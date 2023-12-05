@@ -1,0 +1,38 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+
+model Sensor {
+  id Int @default(autoincrement()) @id
+  ph_level Float
+  do_level Float
+  water_density Float
+  salinity_level Float
+  temperature_level Float
+  water_quality Float
+
+  created_at DateTime @default(now())
+}
+
+model Camera {
+  id Int @default(autoincrement()) @id
+  fish_number Int
+  last_error DateTime
+  created_at DateTime @default(now())
+
+}
+
+model Alert {
+  id Int @default(autoincrement()) @id
+  type String
+  message String
+}
